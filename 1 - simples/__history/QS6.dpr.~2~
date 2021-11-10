@@ -1,0 +1,23 @@
+program QS6;
+
+uses
+  SysUtils,
+  uISubstitui in 'uISubstitui.pas',
+  uSubstitui in 'uSubstitui.pas';
+
+{$R *.RES}
+
+var
+  LTexto: String;
+  LVelho: String;
+  LNovo: String;
+  LSubstitui: iSubstitui;
+begin
+  Writeln('Texto original: “O rato roeu a roupa do rei de roma“');
+  LTexto := 'O rato roeu a roupa do rei de roma';
+
+  LSubstitui := TSubstitui.Create;
+  Writeln('Texto alterado: ');
+  Writeln(LSubstitui.Substituir(LTexto,LVelho,LNovo));
+end.
+

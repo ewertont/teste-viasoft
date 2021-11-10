@@ -1,0 +1,39 @@
+unit uSubstitui;
+
+interface
+
+uses
+  uISubstitui;
+
+type
+  TSubstitui = class(TInterfacedObject, ISubstitui)
+  public
+    function Substituir(Str, Velho, Novo: String): String;
+  end;
+
+implementation
+
+{ TSubstitui }
+
+function TSubstitui.Substituir(Str, Velho, Novo: string): string;
+var
+  LStrNova, LStrIni, LStrFim: String;
+  LTamStr, LTamVelho, LIndiceInicial: Integer;
+begin
+  LStrNova := '';
+  repeat
+    LTamVelho := Length(Velho);
+    LTamStr := Length(Str);
+    LIndiceInicial := Pos(Velho, Str);
+    if LIndiceInicial <> 0 then
+    begin
+      LStrIni := Copy(Str, 0, LIndiceInicial - 1);
+      LStrFim := Copy(Str, LIndiceInicial + LTamVelho, LTamStr);
+      LStrNova := LStrIni + Novo + LStrFim;
+      Str := LStrNova;
+    end;
+  until (LIndiceInicial = 0);
+  Result := Str;
+end;
+
+end.
